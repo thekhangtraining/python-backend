@@ -1,0 +1,338 @@
+[
+    {
+        "account_id": 106863163,
+        "name": "Somnus",
+        "games_played": 1452,
+        "wins": 910,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 98878010,
+        "name": "Escaper",
+        "games_played": 1065,
+        "wins": 630,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 101695162,
+        "name": "fy",
+        "games_played": 728,
+        "wins": 461,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 89407113,
+        "name": null,
+        "games_played": 630,
+        "wins": 381,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 98887913,
+        "name": "xiao8",
+        "games_played": 629,
+        "wins": 400,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 94738847,
+        "name": "Chalice",
+        "games_played": 629,
+        "wins": 414,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 94296097,
+        "name": "xNova",
+        "games_played": 627,
+        "wins": 414,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 108382060,
+        "name": "Sylar",
+        "games_played": 587,
+        "wins": 358,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 114239371,
+        "name": "ddc",
+        "games_played": 517,
+        "wins": 305,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 898754153,
+        "name": "萧瑟",
+        "games_played": 499,
+        "wins": 350,
+        "is_current_team_member": true
+    },
+    {
+        "account_id": 111114687,
+        "name": "y`",
+        "games_played": 484,
+        "wins": 338,
+        "is_current_team_member": true
+    },
+    {
+        "account_id": 157475523,
+        "name": "XinQ",
+        "games_played": 484,
+        "wins": 338,
+        "is_current_team_member": true
+    },
+    {
+        "account_id": 118134220,
+        "name": "Faith_bian",
+        "games_played": 482,
+        "wins": 338,
+        "is_current_team_member": true
+    },
+    {
+        "account_id": 125581247,
+        "name": "Ame",
+        "games_played": 471,
+        "wins": 310,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 173978074,
+        "name": "NothingToSay",
+        "games_played": 443,
+        "wins": 311,
+        "is_current_team_member": true
+    },
+    {
+        "account_id": 89371588,
+        "name": null,
+        "games_played": 428,
+        "wins": 258,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 107081378,
+        "name": "小蜘蛛",
+        "games_played": 394,
+        "wins": 229,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 177416702,
+        "name": " ",
+        "games_played": 372,
+        "wins": 217,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 134276083,
+        "name": "old eLeVeN",
+        "games_played": 297,
+        "wins": 186,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 123854991,
+        "name": null,
+        "games_played": 253,
+        "wins": 149,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 131237305,
+        "name": null,
+        "games_played": 193,
+        "wins": 116,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 82327674,
+        "name": "Faith",
+        "games_played": 190,
+        "wins": 107,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 111291593,
+        "name": "小羊",
+        "games_played": 185,
+        "wins": 104,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 130416036,
+        "name": "Agressif",
+        "games_played": 150,
+        "wins": 93,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 221651179,
+        "name": null,
+        "games_played": 139,
+        "wins": 86,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 89598554,
+        "name": "老猫",
+        "games_played": 133,
+        "wins": 87,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 91698091,
+        "name": null,
+        "games_played": 121,
+        "wins": 69,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 136477860,
+        "name": "Meteor",
+        "games_played": 114,
+        "wins": 61,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 98837977,
+        "name": null,
+        "games_played": 76,
+        "wins": 43,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 118678359,
+        "name": null,
+        "games_played": 30,
+        "wins": 12,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 125657145,
+        "name": null,
+        "games_played": 25,
+        "wins": 19,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 108354417,
+        "name": null,
+        "games_played": 24,
+        "wins": 20,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 137129583,
+        "name": "Xm",
+        "games_played": 23,
+        "wins": 15,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 89399750,
+        "name": "QQQ",
+        "games_played": 21,
+        "wins": 10,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 89217927,
+        "name": null,
+        "games_played": 19,
+        "wins": 6,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 99460568,
+        "name": "SmAsh-",
+        "games_played": 15,
+        "wins": 5,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 89359427,
+        "name": null,
+        "games_played": 13,
+        "wins": 6,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 90892194,
+        "name": null,
+        "games_played": 9,
+        "wins": 4,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 126271070,
+        "name": null,
+        "games_played": 8,
+        "wins": 7,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 92590479,
+        "name": "Jixing",
+        "games_played": 6,
+        "wins": 3,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 468599935,
+        "name": "ASD",
+        "games_played": 5,
+        "wins": 3,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 105714065,
+        "name": null,
+        "games_played": 5,
+        "wins": 2,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 177061211,
+        "name": null,
+        "games_played": 2,
+        "wins": 2,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 146776927,
+        "name": null,
+        "games_played": 2,
+        "wins": 0,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 128846317,
+        "name": null,
+        "games_played": 2,
+        "wins": 2,
+        "is_current_team_member": null
+    },
+    {
+        "account_id": 231622898,
+        "name": "BANG",
+        "games_played": 2,
+        "wins": 0,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 113705693,
+        "name": "ZSMJ",
+        "games_played": 1,
+        "wins": 0,
+        "is_current_team_member": false
+    },
+    {
+        "account_id": 213537655,
+        "name": null,
+        "games_played": 1,
+        "wins": 1,
+        "is_current_team_member": null
+    }
+]
