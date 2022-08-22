@@ -72,6 +72,42 @@ def chunk_fn(lst, n):
         yield lst[i : i + n]
 
 
+heroes = requests.get("https://api.opendota.com/api/heroes").json()
+
+
+def get_matches_stats(player, matches):
+    wins = 0
+    losses = 0
+    win_rate = 0
+    heroes_played = []
+    for m in matches:
+        if m["game_mode"] in [1, 2]:
+            if (0 <= m["player_slot"] <= 127 and m["radiant_win"]) or (
+                128 <= m["player_slot"] <= 255 and (not m["radiant_win"])
+            ):
+                wins += 1
+            else:
+                losses += 1
+            for h in heroes:
+                if h["id"] == m["hero_id"] and not (
+                    h["localized_name"] in heroes_played
+                ):
+                    heroes_played.append(h["localized_name"])
+
+    if wins + losses == 0:
+        return None
+    else:
+        win_rate = round(wins / (wins + losses) * 100, 1)
+    stats = {
+        "wins": wins,
+        "losses": losses,
+        "win_rate": win_rate,
+        "heroes": heroes_played,
+    }
+
+    return stats
+
+
 # Yield a list of lists of 50 players
 players_chunks = list(chunk_fn(chunks, 50))
 
@@ -80,10 +116,15 @@ for i in range(len(players_chunks)):
     with open(f"./data/players_{i}.json", "w") as f:
         f.write("[")
         for p in current_chunk:
-            p["recent_matches"] = requests.get(
+            matches = requests.get(
                 f'https://api.opendota.com/api/players/{p["account_id"]}/recentMatches'
             ).json()
             print(f'Processing player: {p["account_id"]}')
+            stats = get_matches_stats(p, matches)
+            if stats != None:
+                p["stats"] = stats
+            else:
+                continue
             if current_chunk.index(p) == len(current_chunk) - 1:
                 f.write(f"{json.dumps(p)}")
             else:
@@ -91,4 +132,5 @@ for i in range(len(players_chunks)):
         f.write("]")
     # Wait for > one minute to continue
     if i != len(players_chunks) - 1:
+        print("WAITING 65s...")
         time.sleep(65)
