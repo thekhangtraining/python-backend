@@ -23,16 +23,46 @@ for p in response:
         }
     )
 
-# Get teams that have matches in the last nine months
+# Get teams that have matches in the last size months
 teams = []
 response = requests.get("https://api.opendota.com/api/teams/").json()
 for t in response:
     diff = (datetime.now() - datetime.fromtimestamp(t["last_match_time"])).days
-    if diff < 270:
+    if diff < 180:
         t["last_match_time"] = datetime.fromtimestamp(t["last_match_time"]).strftime(
-            "%H:%M:%S %d.%m.%Y"
+            "%H:%M:%S %d/%m/%Y"
         )
         teams.append(t)
+
+# Get matches and players of the best team
+response = requests.get(
+    f'https://api.opendota.com/api/teams/{teams[0]["team_id"]}/players'
+).json()
+
+with open(f"./data/best_team_players.json", "w") as f:
+    json.dump(response, f)
+
+response = requests.get(
+    f'https://api.opendota.com/api/teams/{teams[0]["team_id"]}/matches'
+).json()
+
+with open(f"./data/best_team_matches.json", "w") as f:
+    json.dump(response, f)
+
+# Get five recent matches each team
+counter = -1
+for t in teams:
+    counter += 1
+    if counter == 50:
+        print("\033[93mWAITING 60s...\033[0m")
+        time.sleep(60)
+        counter = -1
+    print(f'Team: {t["team_id"]}')
+    response = requests.get(
+        f'https://api.opendota.com/api/teams/{t["team_id"]}/matches'
+    ).json()
+    t["matches"] = response[:5] if len(response) >= 5 else response
+
 
 with open("./data/teams.json", "w") as f:
     f.write("[")
@@ -53,33 +83,15 @@ for p in players_all:
             p["team_logo"] = t["logo_url"]
             players.append(p)
 
-with open("./data/players.json", "w") as f:
-    f.write("[")
-    for p in players:
-        if players_all.index(p) == len(players_all) - 1:
-            f.write(f"{json.dumps(p)}")
-        else:
-            f.write(f"{json.dumps(p)},\n")
-    f.write("]")
-
-# Split list into equal chunks (due to rate limit of 60 requests/minutes)
-chunks = []
-chunks = deepcopy(players)
-
-
-def chunk_fn(lst, n):
-    for i in range(0, len(lst), n):
-        yield lst[i : i + n]
-
-
 heroes = requests.get("https://api.opendota.com/api/heroes").json()
 
-
-def get_matches_stats(player, matches):
+# Get recent matches of pro players
+def get_matches_stats(matches):
     wins = 0
     losses = 0
     win_rate = 0
     heroes_played = []
+
     for m in matches:
         if m["game_mode"] in [1, 2]:
             if (0 <= m["player_slot"] <= 127 and m["radiant_win"]) or (
@@ -95,42 +107,51 @@ def get_matches_stats(player, matches):
                     heroes_played.append(h["localized_name"])
 
     if wins + losses == 0:
-        return None
+        return {
+            "wins": 0,
+            "losses": 0,
+            "win_rate": 0,
+            "heroes": [],
+        }
     else:
         win_rate = round(wins / (wins + losses) * 100, 1)
-    stats = {
+
+    return {
         "wins": wins,
         "losses": losses,
         "win_rate": win_rate,
         "heroes": heroes_played,
     }
 
-    return stats
 
+with open(f"./data/players.json", "w") as f:
+    f.write("[")
 
-# Yield a list of lists of 50 players
-players_chunks = list(chunk_fn(chunks, 50))
+    counter = -2
+    for p in players:
+        print(f'Player: {p["account_id"]}')
+        counter += 2
+        if counter == 50:
+            counter = -2
+            print("\033[93mWAITING 60s...\033[0m")
+            time.sleep(60)
+        player_info = requests.get(
+            f'https://api.opendota.com/api/players/{p["account_id"]}'
+        ).json()
+        matches = requests.get(
+            f'https://api.opendota.com/api/players/{p["account_id"]}/recentMatches'
+        ).json()
 
-for i in range(len(players_chunks)):
-    current_chunk = players_chunks[i]
-    with open(f"./data/players_{i}.json", "w") as f:
-        f.write("[")
-        for p in current_chunk:
-            matches = requests.get(
-                f'https://api.opendota.com/api/players/{p["account_id"]}/recentMatches'
-            ).json()
-            print(f'Processing player: {p["account_id"]}')
-            stats = get_matches_stats(p, matches)
-            if stats != None:
-                p["stats"] = stats
-            else:
-                continue
-            if current_chunk.index(p) == len(current_chunk) - 1:
-                f.write(f"{json.dumps(p)}")
-            else:
-                f.write(f"{json.dumps(p)},\n")
-        f.write("]")
-    # Wait for > one minute to continue
-    if i != len(players_chunks) - 1:
-        print("WAITING 65s...")
-        time.sleep(65)
+        if (
+            "leaderboard_rank" in player_info
+            and player_info["leaderboard_rank"] is not None
+        ):
+            p["rank"] = player_info["leaderboard_rank"]
+        else:
+            p["rank"] = 9999
+        p["matches"] = get_matches_stats(matches)
+        if players.index(p) == len(players) - 1:
+            f.write(f"{json.dumps(p)}")
+        else:
+            f.write(f"{json.dumps(p)},\n")
+    f.write("]")
