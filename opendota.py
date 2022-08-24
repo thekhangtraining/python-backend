@@ -27,6 +27,10 @@ for p in response:
 teams = []
 response = requests.get("https://api.opendota.com/api/teams/").json()
 for t in response:
+    if t["wins"] + t["losses"] > 0:
+        t["win_rate"] = round(t["wins"] / (t["wins"] + t["losses"]) * 100, 1)
+    else:
+        t["win_rate"] = 0
     diff = (datetime.now() - datetime.fromtimestamp(t["last_match_time"])).days
     if diff < 180:
         t["last_match_time"] = datetime.fromtimestamp(t["last_match_time"]).strftime(
